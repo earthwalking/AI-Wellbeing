@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/earthwalking/AI-Wellbeing/schemas/benchmark.schema.json",
+  "title": "AI-Wellbeing Human Benchmark Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["participant_id", "construct", "score", "instrument"],
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "De-identified participant identifier."
+    },
+    "construct": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Psychological construct being measured."
+    },
+    "score": {
+      "type": "number",
+      "description": "Numeric construct score."
+    },
+    "instrument": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human measurement instrument or scale."
+    },
+    "identity": {
+      "$ref": "#/$defs/identity"
+    },
+    "behavior": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Optional behavioral indicators aligned to the construct."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Non-sensitive source, sample, or preprocessing metadata."
+    }
+  },
+  "$defs": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gender": { "type": ["string", "null"] },
+        "age_group": { "type": ["string", "null"] },
+        "education": { "type": ["string", "null"] },
+        "income_group": { "type": ["string", "null"] },
+        "region": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
