@@ -19,6 +19,7 @@ class FidelityMetricTests(unittest.TestCase):
         self.assertEqual(report["signed_difference"], 1)
         self.assertEqual(report["absolute_difference"], 1)
 
+
     def test_variance_fidelity_detects_compression(self):
         report = variance_fidelity([1, 3, 5], [2, 3, 4])
 
@@ -26,11 +27,13 @@ class FidelityMetricTests(unittest.TestCase):
         self.assertEqual(report["model_variance"], 1)
         self.assertEqual(report["model_to_human_ratio"], 0.25)
 
+
     def test_distribution_fidelity_is_zero_for_identical_samples(self):
         report = distribution_fidelity([1, 2, 3], [1, 2, 3], bins=3)
 
         self.assertEqual(report["wasserstein_distance"], 0)
         self.assertEqual(report["histogram_kl_divergence"], 0)
+
 
     def test_identity_fidelity_reports_shared_groups(self):
         human = [
@@ -47,6 +50,7 @@ class FidelityMetricTests(unittest.TestCase):
 
         self.assertEqual(report["women"]["absolute_difference"], 0)
         self.assertEqual(report["men"]["absolute_difference"], 2)
+
 
     def test_behavioral_fidelity_compares_correlations(self):
         human = [
@@ -70,6 +74,7 @@ class FidelityMetricTests(unittest.TestCase):
         self.assertEqual(report["human_correlation"], 1)
         self.assertEqual(report["model_correlation"], -1)
         self.assertEqual(report["absolute_difference"], 2)
+
 
     def test_fidelity_report_contains_core_layers(self):
         report = fidelity_report([1, 2, 3], [1, 2, 2], bins=3)
